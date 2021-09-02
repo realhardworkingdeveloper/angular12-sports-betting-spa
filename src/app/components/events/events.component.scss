@@ -1,0 +1,36 @@
+.league {
+  margin: 20px 0;
+  
+  h1 {
+    // margin: 10px 0;
+    color: #fff;
+    background-color: hsla(0, 86%, 57%, 1);
+    font-size: 1.5rem;
+  }
+
+  .events {
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+
+    .day-market {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      background-color: hsla(0, 100%, 0, 0.5);
+      color: #fff;
+      font-size: 1.2rem;
+
+      .date {
+        flex: 2;
+      }
+
+      .main-markets {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
+}
