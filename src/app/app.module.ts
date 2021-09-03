@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { EventsComponent } from './components/events/events.component';
 import { EventComponent } from './components/event/event.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { TicketComponent } from './components/ticket/ticket.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsComponent,
     EventComponent,
-    FilterPipe
+    FilterPipe,
+    TicketComponent
   ],
   imports: [
     BrowserModule,

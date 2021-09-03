@@ -6,7 +6,7 @@
       <p>{{ event.fixture.startDate | date :'shortTime' }}</p>
     </div>
     <div class="markets" *ngFor="let market of event.markets | filter: 1">
-      <p class="pick" *ngFor="let pick of market.picks">{{ market.marketId == 1 ? pick.name : ''}}</p>
+      <p class="pick" *ngFor="let pick of market.picks">{{ market.marketId == 1 ? pick.odds : ''}}</p>
     </div>
   </li>
 </ul>
