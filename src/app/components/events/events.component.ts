@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Event, Pick, Quota } from 'src/app/Event';
 import { EventsService } from 'src/app/services/events.service';
 import { TicketService } from 'src/app/services/ticket.service';
 
@@ -9,6 +10,7 @@ import { TicketService } from 'src/app/services/ticket.service';
 })
 export class EventsComponent implements OnInit {
   events: any = [];
+  filterMarketId: number = 1;
 
   constructor(
     private eventsService: EventsService, 
@@ -19,16 +21,9 @@ export class EventsComponent implements OnInit {
     this.eventsService.getEvents().subscribe(events => this.events = events);
   }
 
-  toggleAddToTicket({event, pick}: any) {
-    const isEventOnTicket = this.ticketService.ticketList.some(
-        (e: any) => e.event.id === event.id
-      );
-    const isQuotaOnTicket = this.ticketService.ticketList.some(
-        (q: any) => q.pick.id === pick.id
-      );
-
-    if (isEventOnTicket) {
-      if(isQuotaOnTicket) {
+  toggleAddToTicket({event, pick}: Quota) {
+    if (this.isEventOnTicket(event)) {
+      if(this.isQuotaOnTicket(pick)) {
         this.ticketService.removeFromTicket(event);
       } else {
         this.ticketService.removeFromTicket(event);
@@ -37,5 +32,13 @@ export class EventsComponent implements OnInit {
     } else {
       this.ticketService.addToTicket({event, pick});
     }
+  }
+
+  isEventOnTicket(event: Event): boolean {
+    return this.ticketService.ticketList.some((e: any) => e.event.id === event.id);
+  }
+
+  isQuotaOnTicket(pick: Pick): boolean {
+    return this.ticketService.ticketList.some((q: any) => q.pick.id === pick.id);
   }
 }
