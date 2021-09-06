@@ -14,7 +14,7 @@ export class TicketService {
 
   removeFromTicket(event: any) {
     this.ticketList = this.ticketList.filter(
-      (e: any) => e.event.id !== event.id
+      (tl: any) => tl.event.id !== event.id
     );
   }
 }

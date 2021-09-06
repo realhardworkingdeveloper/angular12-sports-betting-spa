@@ -6,14 +6,14 @@ export interface Event {
   fixture: {
     startDate: string,
     type: string,
-    participants: Participants[]
+    participants: Participants[],
     league: League
   },
   markets: Market[],
-  topLeagues: any[]
+  topLeagues: any[],
   marketsTotal: number,
   isHighlighted: boolean,
-  willBeLive: false,
+  willBeLive: boolean,
   picksTotal: number,
   visualizationInfo: {
     betRadar: {
@@ -44,7 +44,7 @@ export interface Market {
   marketId: string,
   bl: number,
   name: string,
-  picks: Pick[]
+  picks: Pick[],
   order: number,
   isValid: boolean
 }

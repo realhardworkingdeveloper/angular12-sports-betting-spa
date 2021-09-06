@@ -2,7 +2,7 @@ import { League, Market } from "./Event";
 
 export interface Events {
   markets: Market[],
-  locations: Locations[]
+  locations: Locations[],
   sport: {
     id: string,
     order: number,

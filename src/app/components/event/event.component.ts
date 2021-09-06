@@ -7,10 +7,9 @@ import { Event, Quota } from 'src/app/Event';
   styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
-  @Input() event!: Event;
-  @Input() filterMarketId: number = 1;
-  @Input() eventsByDay: any;
-  @Output() onAddToTicket: EventEmitter<any> = new EventEmitter();
+  @Input() event!: any;
+  @Input() filterMarketId!: number;
+  @Output() onAddToTicket: EventEmitter<Quota> = new EventEmitter();
 
   constructor() { }
 
@@ -19,5 +18,6 @@ export class EventComponent implements OnInit {
 
   onQuotaClick({event, pick}: Quota) {
     this.onAddToTicket.emit({event, pick});
+    console.log(this.event);
   }
 }
