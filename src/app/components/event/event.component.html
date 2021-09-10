@@ -1,12 +1,14 @@
-<ul class="events-by-day" *ngFor="let event of eventsByDay.events">
+<ul class="events-by-day">
   <li class="event">
     <div class="event-info">
       <h3>{{ event.fixture.participants[0].name }} | 
         {{ event.fixture.participants[1].name }}</h3>
       <p>{{ event.fixture.startDate | date :'shortTime' }}</p>
     </div>
-    <div class="markets" *ngFor="let market of event.markets | filter: 1">
-      <p class="pick" *ngFor="let pick of market.picks">{{ market.marketId == 1 ? pick.name : ''}}</p>
+    <div class="markets" *ngFor="let market of event.markets | filter: filterMarketId">
+      <p class="pick" [ngClass]="{'active': pick.odds == targetQuota}" *ngFor="let pick of market.picks"
+        (click)="onQuotaClick($event, {event: event, pick: pick})" >
+        {{ pick.odds | number: '1.2-2' }}</p>
     </div>
   </li>
 </ul>

@@ -1,0 +1,27 @@
+.ticket {
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  justify-content: space-around;
+  background-color: hsla(0, 0, 50%, 1);
+  box-shadow: 1px 1px 3px hsla(0, 100%, 0, 0.4);
+  border-radius: 3px;
+
+  .bet-selected-list {
+    display: flex;
+    flex-direction: column;
+
+    .bet-selected {
+      display: flex;
+      flex-direction: row;
+      background-color: #fff;
+    }
+  }
+
+  .bet-info {
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+  }
+}
