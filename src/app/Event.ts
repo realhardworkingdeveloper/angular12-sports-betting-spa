@@ -10,7 +10,7 @@ export interface Event {
     league: League
   },
   markets: Market[],
-  topLeagues: any[],
+  topLeagues?: any[],
   marketsTotal: number,
   isHighlighted: boolean,
   willBeLive: boolean,

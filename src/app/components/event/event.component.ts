@@ -7,6 +7,7 @@ import { Event, Quota } from 'src/app/Event';
   styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
+  targetQuota!: number;
   @Input() event!: any;
   @Input() filterMarketId!: number;
   @Output() onAddToTicket: EventEmitter<Quota> = new EventEmitter();
@@ -16,8 +17,18 @@ export class EventComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onQuotaClick({event, pick}: Quota) {
+  onQuotaClick($event: any, {event, pick}: Quota): void {
     this.onAddToTicket.emit({event, pick});
-    console.log(this.event);
+    this.toggleSelectedQuota($event);
+  }
+
+  toggleSelectedQuota($event: any) {
+    const clickedQuota = parseFloat($event.target.innerText);
+
+    if (this.targetQuota != clickedQuota) {
+      this.targetQuota = clickedQuota;
+    } else {
+      this.targetQuota = -1;
+    }
   }
 }

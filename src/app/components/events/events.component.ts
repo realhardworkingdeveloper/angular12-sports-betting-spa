@@ -24,7 +24,7 @@ export class EventsComponent implements OnInit {
     this.eventsService.getEvents().subscribe(events => this.events = events);
   }
 
-  toggleAddToTicket({event, pick}: Quota) {
+  toggleAddToTicket({event, pick}: Quota): void {
     if (this.isEventOnTicket(event)) {
       if(this.isQuotaOnTicket(pick)) {
         this.ticketService.removeFromTicket(event);
@@ -38,10 +38,10 @@ export class EventsComponent implements OnInit {
   }
 
   isEventOnTicket(event: Event): boolean {
-    return this.ticketService.ticketList.some((e: any) => e.event.id === event.id);
+    return this.ticketService.ticketList.some((e: Quota) => e.event.id === event.id);
   }
 
   isQuotaOnTicket(pick: Pick): boolean {
-    return this.ticketService.ticketList.some((q: any) => q.pick.id === pick.id);
+    return this.ticketService.ticketList.some((q: Quota) => q.pick.id === pick.id);
   }
 }

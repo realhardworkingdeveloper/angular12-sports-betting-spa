@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
+import { Event, Quota } from '../Event';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
-  ticketList: any = [];
+  ticketList: Quota[] = [];
 
   constructor() { }
 
-  addToTicket({event, pick}: any) {
+  addToTicket({event, pick}: Quota) {
     this.ticketList.push({event, pick});
   }
 
-  removeFromTicket(event: any) {
+  removeFromTicket(event: Event) {
     this.ticketList = this.ticketList.filter(
-      (tl: any) => tl.event.id !== event.id
+      (ticketItem: Quota) => ticketItem.event.id !== event.id
     );
   }
 }

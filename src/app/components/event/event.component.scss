@@ -37,6 +37,7 @@
         text-align: center;
         border-left: 1px solid hsla(0, 0, 0, 0.2);
         background-color: hsla(0, 0, 20%, 0.1);
+        user-select: none;
 
         &:hover {
           background-color: hsla(0, 0, 20%, 0.2);
@@ -45,6 +46,7 @@
 
       .active {
         background-color: hsla(0, 100%, 34%, 1);
+        color: #fff;
 
         &:hover {
           background-color: hsla(0, 100%, 34%, 1);

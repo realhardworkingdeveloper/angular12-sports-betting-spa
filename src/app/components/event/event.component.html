@@ -6,8 +6,8 @@
       <p>{{ event.fixture.startDate | date :'shortTime' }}</p>
     </div>
     <div class="markets" *ngFor="let market of event.markets | filter: filterMarketId">
-      <p class="pick" *ngFor="let pick of market.picks"
-        (click)="onQuotaClick({event: event, pick: pick})" >
+      <p class="pick" [ngClass]="{'active': pick.odds == targetQuota}" *ngFor="let pick of market.picks"
+        (click)="onQuotaClick($event, {event: event, pick: pick})" >
         {{ pick.odds | number: '1.2-2' }}</p>
     </div>
   </li>
