@@ -1,22 +1,27 @@
 <div class="ticket">
   <div class="bet-selected-list">
-    <div class="bet-selected">
-      <h5>group</h5>
-      <p>play time</p>
-      <p class="pick">X</p>
-      <p>qouta</p>
-      <button class="remove-btn">&#120;</button>
-    </div>
-    <div class="bet-selected">
-      <h5>group</h5>
-      <p>play time</p>
-      <p class="pick">X</p>
-      <p>qouta</p>
-      <button class="remove-btn">&#120;</button>
+    <div class="bet-selected" *ngFor="let event of ticketList">
+      <div class="bet-header">
+        <div class="event-name">
+          <h5 *ngFor="let participant of event.event.fixture.participants">{{ participant.name }}</h5>
+        </div>
+        <span class="remove-btn-space">
+          <button class="remove-btn">&#120;</button>
+        </span>
+      </div>
+      <div class="bet-info">
+        <div class="item-left">
+          <p>{{ event.event.fixture.startDate | date :'shortTime' }}</p>
+        </div>
+        <div class="item-right">
+          <p class="pick">{{ event.pick.name }}</p>
+          <p>{{ event.pick.odds }}</p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="bet-info">
-    <p>Total quota <span>7.56</span></p>
+  <div class="ticket-place-bet">
+    <p>Total quota: <span>{{ totalQuota }}</span></p>
     <br>
     <label>Place your bet:</label>
     <input type="number" name="bet">

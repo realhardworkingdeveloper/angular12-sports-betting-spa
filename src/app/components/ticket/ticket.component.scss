@@ -1,8 +1,9 @@
 .ticket {
   display: flex;
   flex-direction: column;
-  height: 350px;
-  justify-content: space-around;
+  min-height: 220px;
+  padding: 18px 0;
+  justify-content: space-between;
   background-color: hsla(0, 0, 50%, 1);
   box-shadow: 1px 1px 3px hsla(0, 100%, 0, 0.4);
   border-radius: 3px;
@@ -10,18 +11,96 @@
   .bet-selected-list {
     display: flex;
     flex-direction: column;
+    flex: 2;
 
     .bet-selected {
+      padding: 4px 0;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       background-color: #fff;
+
+      .bet-header {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+
+        .event-name {
+          padding: 5px;
+          display: flex;
+          flex-direction: row;
+          flex: 4;
+          justify-content: flex-start;
+        }
+
+        .remove-btn-space {
+          padding-right: 8px;
+          display: flex;
+          flex-direction: row;
+          flex: 4;
+          justify-content: flex-end;
+          align-items: center;
+
+          .remove-btn {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            cursor: pointer;
+
+            &:hover {
+              background-color: hsla(0, 80%, 50%, 1);
+              color: #fff;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        .bet-header {
+          .remove-btn-space {
+            .remove-btn {
+              display: block;
+            }
+          }
+        }
+      }
+
+      .bet-info {
+        display: flex;
+        flex-direction: row;
+        color: hsla(0, 0, 0, 0.6);
+
+        .item-left {
+          margin-left: 5px;
+          flex: 1;
+        }
+
+        .item-right {
+          display: flex;
+          flex-direction: row;
+          flex: 1;
+          justify-content: space-around;
+
+          .pick {
+            display: inline-block;
+            padding: 0 5px;
+            border: 1px solid hsla(0, 0, 0, 0.4);
+            border-radius: 3px;
+            background-color: hsla(0, 0, 80%, 0.2);
+          }
+        }
+      }
     }
   }
 
-  .bet-info {
+  .ticket-place-bet {
     margin: 0 10px;
+    padding-top: 18px;
     display: flex;
     flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
     color: #fff;
   }
 }
