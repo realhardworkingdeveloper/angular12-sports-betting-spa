@@ -9,11 +9,13 @@ import { TicketService } from 'src/app/services/ticket.service';
 })
 export class TicketComponent implements OnInit {
   ticketList: Quota[];
-  totalQuota: number = 0;
+  totalQuota: number;
+  potentialWin: number = 0;
+  placedBet: number = 1;
 
   constructor(public ticketService: TicketService) { 
     this.ticketList = ticketService.getTicketList();
-    this.totalQuota = ticketService.calculateTotalQuota();
+    this.totalQuota = ticketService.getTotalQuota();
   }
 
   ngOnInit(): void {

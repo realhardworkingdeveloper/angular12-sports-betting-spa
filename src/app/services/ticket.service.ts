@@ -6,11 +6,21 @@ import { Event, Quota } from '../Event';
 })
 export class TicketService {
   ticketList: Quota[] = [];
+  totalQuota: number = 0;
 
   constructor() { }
 
+  getTicketList(): Quota[] {
+    return this.ticketList;
+  }
+
+  getTotalQuota(): number {
+    return this.totalQuota;
+  }
+
   addToTicket({event, pick}: Quota) {
     this.ticketList.push({event, pick});
+    console.log(this.ticketList);
   }
 
   removeFromTicket(event: Event) {
@@ -19,15 +29,13 @@ export class TicketService {
     );
   }
 
-  getTicketList(): Quota[] {
-    return this.ticketList;
-  }
+  calculateTotalQuota(): void {
+    this.totalQuota = 0;
 
-  calculateTotalQuota(): number {
-    let totalQuota: number = 0;
-
-    this.ticketList !== [] && this.ticketList.map((event: any) => totalQuota += event.pick.odds);
-
-    return totalQuota;
+    this.ticketList !== [] && this.ticketList.map((event: any) => {
+      this.totalQuota !== 0 ? this.totalQuota *= event.pick.odds : this.totalQuota += event.pick.odds
+      console.log(event);
+    });
+    console.log(this.totalQuota);
   }
 }

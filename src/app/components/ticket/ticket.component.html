@@ -3,7 +3,7 @@
     <div class="bet-selected" *ngFor="let event of ticketList">
       <div class="bet-header">
         <div class="event-name">
-          <h5 *ngFor="let participant of event.event.fixture.participants">{{ participant.name }}</h5>
+          <h5 *ngFor="let participant of event.event.fixture.participants; let i = index">{{ participant.name }} {{ i == 0 ? ' - ' : '' }}</h5>
         </div>
         <span class="remove-btn-space">
           <button class="remove-btn">&#120;</button>
@@ -11,21 +11,23 @@
       </div>
       <div class="bet-info">
         <div class="item-left">
-          <p>{{ event.event.fixture.startDate | date :'shortTime' }}</p>
+          <p>{{ event.event.fixture.startDate | date :'short' }}</p>
         </div>
         <div class="item-right">
           <p class="pick">{{ event.pick.name }}</p>
-          <p>{{ event.pick.odds }}</p>
+          <p>{{ event.pick.odds | number: '1.2-2' }}</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="ticket-place-bet">
-    <p>Total quota: <span>{{ totalQuota }}</span></p>
-    <br>
-    <label>Place your bet:</label>
-    <input type="number" name="bet">
-    <label>Win:</label>
-    <input type="number" name="win">
+  <div class="ticket-bet-info">
+    <div class="total-quota">
+      <p>Total quota: <span>{{ totalQuota }}</span></p>
+    </div>
+    <div class="place-bet">
+      <label>Bet:</label>
+      <input type="number" name="bet" value="{{ placedBet | number: '1.2-2' }}" step=".50">
+    </div>
+    <div class="win">Win: <span>{{ potentialWin | number: '1.2-2' }}</span></div>
   </div>
 </div>
