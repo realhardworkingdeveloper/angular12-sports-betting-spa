@@ -9,6 +9,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { TicketComponent } from './components/ticket/ticket.component';
 import { TicketService } from './services/ticket.service';
 import { EventsService } from './services/events.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EventsService } from './services/events.service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     TicketService,

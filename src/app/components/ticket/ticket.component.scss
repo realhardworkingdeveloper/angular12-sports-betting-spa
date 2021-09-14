@@ -1,27 +1,219 @@
+@import '../../styles/queries.scss';
+@import '../../styles/colors.scss';
+
 .ticket {
   display: flex;
   flex-direction: column;
-  height: 350px;
-  justify-content: space-around;
-  background-color: hsla(0, 0, 50%, 1);
-  box-shadow: 1px 1px 3px hsla(0, 100%, 0, 0.4);
+  min-height: 110px;
+  justify-content: space-between;
+  background-color: $dark-grey;
+  box-shadow: 1px 1px 3px $dark-grey;
   border-radius: 3px;
 
   .bet-selected-list {
     display: flex;
     flex-direction: column;
+    flex: 2;
 
     .bet-selected {
+      padding: 4px 0;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       background-color: #fff;
+      border-top: 1px solid $mid-grey;
+
+      .bet-header {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+
+        .event-name {
+          padding: 5px;
+          flex: 4;
+
+          h5 {
+            display: inline-block;
+            margin-right: 5px;
+            font-size: 1.2rem;
+          }
+        }
+
+        .remove-btn-space {
+          padding-right: 8px;
+          min-width: 25px;
+          display: flex;
+          flex-direction: row;
+          flex: 1;
+          justify-content: flex-end;
+          align-items: center;
+
+          .remove-btn {
+            display: none;
+            width: 19px;
+            height: 19px;
+            border: 1px solid $light-grey;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            cursor: pointer;
+
+            &:hover {
+              background-color: $red;
+              color: #fff;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        .bet-header {
+          .remove-btn-space {
+            .remove-btn {
+              display: block;
+            }
+          }
+        }
+      }
+
+      .bet-info {
+        display: flex;
+        flex-direction: row;
+        color: $dark-grey;
+
+        .item-left {
+          margin-left: 5px;
+          flex: 1;
+        }
+
+        .item-right {
+          display: flex;
+          flex-direction: row;
+          flex: 1;
+          justify-content: space-around;
+          align-items: center;
+
+          .pick {
+            display: inline-block;
+            padding: 0 7px;
+            border: 1px solid $mid-grey;
+            border-radius: 3px;
+            background-color: $light-grey;
+          }
+        }
+      }
     }
   }
 
-  .bet-info {
+  .ticket-bet-info {
     margin: 0 10px;
+    padding: 8px 4px;
     display: flex;
     flex-direction: column;
-    color: #fff;
+    flex: 1;
+    justify-content: flex-end;
+    color: $white;
+
+    .total-quota {
+      padding: 7px 0;
+    }
+
+    .place-bet {
+      position: relative;
+      
+      label {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        color: $black;
+      }
+
+      input {
+        padding: 4px 5px;
+        text-align: right;
+        box-sizing: border-box;
+        width: 100%;
+        border: 1px solid $white;
+        border-radius: 3px;
+        font-size: 0.9rem;
+      }
+    }
+
+    .win {
+      padding: 7px 0;
+    }
+  }
+
+  @include style-below(lg) {
+    & {
+      .bet-selected-list {
+        .bet-selected {
+          .bet-header {
+            .remove-btn-space {
+              .remove-btn {
+                display: block;
+                background-color: $red;
+                color: $white;
+                width: 17px;
+                height: 17px;
+                font-size: 0.7rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include style-below(md) {
+    & {
+      .ticket-bet-info {
+        font-size: 0.9rem;
+
+        .place-bet {
+          input {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+
+  @include style-between(sm, lg) {
+    & {
+      .bet-selected-list {
+        .bet-selected {
+          .bet-header {
+            .event-name {
+              h5 {
+                font-size: 1rem;
+              }
+            }
+          }
+
+          .bet-info {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+
+  @include style-between(xs, sm) {
+    & {
+      .bet-selected-list {
+        .bet-selected {
+          .bet-header {
+            .event-name {
+              h5 {
+                font-size: 0.9rem;
+              }
+            }
+          }
+
+          .bet-info {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
   }
 }
