@@ -40,6 +40,7 @@
 
         .remove-btn-space {
           padding-right: 8px;
+          min-width: 25px;
           display: flex;
           flex-direction: row;
           flex: 1;
@@ -151,8 +152,8 @@
                 display: block;
                 background-color: $red;
                 color: $white;
-                width: 18px;
-                height: 18px;
+                width: 17px;
+                height: 17px;
                 font-size: 0.7rem;
               }
             }

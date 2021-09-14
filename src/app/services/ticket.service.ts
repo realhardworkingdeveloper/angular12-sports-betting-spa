@@ -1,41 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Event, Quota } from '../Event';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
   ticketList: Quota[] = [];
-  totalQuota: number = 0;
 
   constructor() { }
 
-  getTicketList(): Quota[] {
-    return this.ticketList;
+  getTicketList(): Observable<Quota[]> {
+    return of(this.ticketList);
   }
 
   getTotalQuota(): number {
-    return this.totalQuota;
+    let totalQuota = 0;
+
+    this.ticketList !== [] && this.ticketList.map((event: any) => {
+      totalQuota !== 0 ? totalQuota *= event.pick.odds : totalQuota += event.pick.odds;
+    });
+
+    return totalQuota;
   }
 
-  addToTicket({event, pick}: Quota) {
+  addToTicket({event, pick}: Quota): void {
     this.ticketList.push({event, pick});
-    console.log(this.ticketList);
   }
 
-  removeFromTicket(event: Event) {
+  removeFromTicket(event: Event): void {
     this.ticketList = this.ticketList.filter(
       (ticketItem: Quota) => ticketItem.event.id !== event.id
     );
-  }
-
-  calculateTotalQuota(): void {
-    this.totalQuota = 0;
-
-    this.ticketList !== [] && this.ticketList.map((event: any) => {
-      this.totalQuota !== 0 ? this.totalQuota *= event.pick.odds : this.totalQuota += event.pick.odds
-      console.log(event);
-    });
-    console.log(this.totalQuota);
   }
 }
