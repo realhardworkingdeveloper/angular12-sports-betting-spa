@@ -14,23 +14,23 @@ export class TicketService {
     return of(this.ticketList);
   }
 
-  getTotalQuota(): number {
+  getTotalQuota(): Observable<number> {
     let totalQuota = 0;
 
     this.ticketList !== [] && this.ticketList.map((event: any) => {
       totalQuota !== 0 ? totalQuota *= event.pick.odds : totalQuota += event.pick.odds;
     });
 
-    return totalQuota;
+    return of(totalQuota);
   }
 
-  addToTicket({event, pick}: Quota): void {
-    this.ticketList.push({event, pick});
+  addToTicket({event, pick}: Quota): Observable<number> {
+    return of(this.ticketList.push({event, pick}));
   }
 
-  removeFromTicket(event: Event): void {
-    this.ticketList = this.ticketList.filter(
+  removeFromTicket(event: Event): Observable<Quota[]> {
+    return of(this.ticketList = this.ticketList.filter(
       (ticketItem: Quota) => ticketItem.event.id !== event.id
-    );
+    ))
   }
 }
