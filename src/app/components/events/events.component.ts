@@ -14,9 +14,9 @@ export class EventsComponent implements OnInit {
   filterMarketId: number;
 
   constructor(
-    private eventsService: EventsService, 
+    private eventsService: EventsService,
     private ticketService: TicketService
-  ) { 
+  ) {
     this.filterMarketId = 1
   }
 
@@ -25,8 +25,8 @@ export class EventsComponent implements OnInit {
   }
 
   toggleAddToTicket({event, pick}: Quota): void {
-    if (this.isEventOnTicket(event)) {
-      if(this.isQuotaOnTicket(pick)) {
+    if (this.ticketService.isEventOnTicket(event)) {
+      if(this.ticketService.isQuotaOnTicket(pick)) {
         this.ticketService.removeFromTicket(event);
       } else {
         this.ticketService.removeFromTicket(event);
@@ -35,13 +35,5 @@ export class EventsComponent implements OnInit {
     } else {
       this.ticketService.addToTicket({event, pick});
     }
-  }
-
-  isEventOnTicket(event: Event): boolean {
-    return this.ticketService.ticketList.some((e: Quota) => e.event.id === event.id);
-  }
-
-  isQuotaOnTicket(pick: Pick): boolean {
-    return this.ticketService.ticketList.some((q: Quota) => q.pick.id === pick.id);
   }
 }

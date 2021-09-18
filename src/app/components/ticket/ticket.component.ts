@@ -17,17 +17,15 @@ export class TicketComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ticketService.getTicketList().subscribe((list: Quota[]) => this.ticketList = list);
-    this.ticketService.getTotalQuota().subscribe(tq => this.totalQuota = tq );
+    this.ticketService.ticketListChange$.subscribe((list: Quota[]) => this.ticketList = list);
+    this.ticketService.totalQuotaCalc$.subscribe(tq => {
+      this.totalQuota = tq
+      this.calculateWin();
+    });
   }
 
   removeFromTicket(event: Event): void {
-    this.ticketService.removeFromTicket(event)
-      .subscribe(() => this.ticketList = this.ticketList.filter(e => e.event.id !== event.id));
-  }
-
-  calculateQuota(): void {
-    this.calculateWin();
+    this.ticketService.removeFromTicket(event);
   }
 
   calculateWin(): void {
