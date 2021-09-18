@@ -13,20 +13,19 @@ export class TicketComponent implements OnInit {
   placedBet: number = 1;
   potentialWin: number = 0;
 
-  constructor(public ticketService: TicketService) { 
+  constructor(public ticketService: TicketService) {
   }
 
   ngOnInit(): void {
-    this.ticketService.getTicketList().subscribe((list: Quota[]) => this.ticketList = list);
+    this.ticketService.ticketListChange$.subscribe((list: Quota[]) => this.ticketList = list);
+    this.ticketService.totalQuotaCalc$.subscribe(tq => {
+      this.totalQuota = tq
+      this.calculateWin();
+    });
   }
 
   removeFromTicket(event: Event): void {
     this.ticketService.removeFromTicket(event);
-  }
-
-  calculateQuota(): void {
-    this.totalQuota = this.ticketService.getTotalQuota();
-    this.calculateWin();
   }
 
   calculateWin(): void {

@@ -26,7 +26,7 @@
     </div>
     <div class="place-bet">
       <label>Bet:</label>
-      <input type="number" name="bet" min="1" [ngModel]="placedBet | number: '1.2-2'" (ngModelChange)="placedBet = $event" step=".50" (ngModelChange)="calculateQuota()">
+      <input type="number" name="bet" min="1" [ngModel]="placedBet | number: '1.2-2'" (ngModelChange)="placedBet = $event" step=".50" (ngModelChange)="calculateWin()">
     </div>
     <div class="win">Win: <span>{{ potentialWin | number: '1.2-2' }}</span></div>
   </div>
