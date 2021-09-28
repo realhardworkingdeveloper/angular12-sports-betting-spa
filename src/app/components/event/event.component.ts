@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Event, Quota } from 'src/app/Event';
+import { Event, Pick, Quota } from 'src/app/Event';
 
 @Component({
   selector: 'app-event',
@@ -7,7 +7,7 @@ import { Event, Quota } from 'src/app/Event';
   styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
-  targetQuota!: number;
+  targetQuota: string = '';
   @Input() event!: any;
   @Input() filterMarketId!: number;
   @Output() onAddToTicket: EventEmitter<Quota> = new EventEmitter();
@@ -17,18 +17,20 @@ export class EventComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onQuotaClick($event: any, {event, pick}: Quota): void {
+  onQuotaClick({event, pick}: Quota): void {
     this.onAddToTicket.emit({event, pick});
-    this.toggleSelectedQuota($event);
+    this.toggleSelectedQuota(pick);
   }
 
-  toggleSelectedQuota($event: any) {
-    const clickedQuota = parseFloat($event.target.innerText);
-
-    if (this.targetQuota != clickedQuota) {
-      this.targetQuota = clickedQuota;
-    } else {
-      this.targetQuota = -1;
+  toggleSelectedQuota(pick: Pick): string {
+    if (this.targetQuota === pick.id) {
+      return this.targetQuota = '';
     }
+
+    if (this.targetQuota != pick.id) {
+      return this.targetQuota = pick.id;
+    }
+
+    return '';
   }
 }

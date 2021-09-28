@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Event, Pick, Quota } from 'src/app/Event';
+import { Quota } from 'src/app/Event';
 import { Events } from 'src/app/Events';
 import { EventsService } from 'src/app/services/events.service';
 import { TicketService } from 'src/app/services/ticket.service';

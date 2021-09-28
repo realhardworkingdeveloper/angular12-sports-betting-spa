@@ -10,6 +10,7 @@ import { TicketComponent } from './components/ticket/ticket.component';
 import { TicketService } from './services/ticket.service';
 import { EventsService } from './services/events.service';
 import { FormsModule } from '@angular/forms';
+import { PickOrderPipe } from './pipes/pick-order.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     EventsComponent,
     EventComponent,
     FilterPipe,
-    TicketComponent
+    TicketComponent,
+    PickOrderPipe
   ],
   imports: [
     BrowserModule,

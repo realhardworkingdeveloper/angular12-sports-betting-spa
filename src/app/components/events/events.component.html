@@ -5,7 +5,7 @@
       <div class="day-market">
         <p class="date">{{ eventsByDay.date | date :'mediumDate' }}</p>
         <div class="main-markets" *ngFor="let market of events.markets | filter: filterMarketId">
-          <p class="market" *ngFor="let pick of market.picks">{{ pick.name }}</p>
+          <p class="market" *ngFor="let pick of market.picks | pickOrder">{{ pick.name }}</p>
         </div>
       </div>
       <app-event *ngFor="let event of eventsByDay.events"
